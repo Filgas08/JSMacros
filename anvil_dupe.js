@@ -1,52 +1,51 @@
 ///Must have atleast a 3 block high pillar of damaged anvils ontop of 1 obsidan block.
 ///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
-var wait = 2;///If not working, add 1 by 1 until it works.
 const loop_count = 20;
 
 for (let i = 0; i < loop_count; ++i) {
     Player.openInventory().setSelectedHotbarSlotIndex(0)
-    Client.waitTick(+wait)
+    Client.waitTick(2)
     Player.getPlayer().interact();
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(30, 0);
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().seName("By X2 Beacon");
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(2, 30);
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().close();
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.getPlayer().interact();
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(30, 0);
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().seName("X2 Beacon");
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(2, 30);
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().close();
     ///drop duped item
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.getPlayer().lookAt(0, 50)
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(37, 36);
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().dropSlot(36)
-    Client.waitTick(+wait);
+    Client.waitTick(5);
     Player.getPlayer().lookAt(0, 90)
-    Client.waitTick(+wait);
+    Client.waitTick(2);
     Player.openInventory().swap(36, 37)
     ///
     Player.openInventory().setSelectedHotbarSlotIndex(8)
     Player.getPlayer().lookAt(0, -90)
     Client.waitTick(2);
     for (let i = 0; i < 6; i++) {
-        Chat.say(".input use 1")
+        Player.getPlayer().interactItem(false)
         Client.waitTick(5)
     }
-    Client.waitTick(+wait)
+    Client.waitTick(2)
     Player.getPlayer().lookAt(0, 90)
-    Client.waitTick(+wait)
+    Client.waitTick(2)
 
     ///pillar up
     var Data = Player.rayTraceBlock(5, false).getId(); ///Chat.log("ID: "+Data)
@@ -69,8 +68,9 @@ for (let i = 0; i < loop_count; ++i) {
             Player.getPlayer().interact(); // Place block down
         }
     }
+    
     // exp refill
-    if (Player.openInventory().getSlot(44) != 0) {
-        Chat.log("empty slot");
+    if (Player.openInventory().findItem("minecraft:experience_bottle").length == 0) { 
+        Chat.log("Oh no i don't have more XP bottles :(")
     }
 }
