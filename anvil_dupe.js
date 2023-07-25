@@ -1,8 +1,6 @@
 ///Must have atleast a 3 block high pillar of damaged anvils ontop of 1 obsidan block.
 ///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
-///Must have atleast a 3 block high pillar of damaged anvils ontop of 1 obsidan block.
-///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
-var wait = 5;/// add 1 by 1 until it works
+var wait = 2;///If not working, add 1 by 1 until it works.
 const loop_count = 20;
 
 for (let i = 0; i < loop_count; ++i) {
