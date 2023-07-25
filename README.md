@@ -8,7 +8,7 @@ a minecraft macro for anvil duping.
 go to %APPDATA%\.minecraft\config\jsMacros\Macros\ and move dupe_macro.js in there
 ### linux
 go to ~/.minecraft/config/jsMacros/Macros/ and move dupe_macro.js in there
-### macos
+### macros
 go to ~/Library/Application Support/minecraft/config/jsMacros/Macros/ and move dupe_macro.js in there
 
 ## dependencies
