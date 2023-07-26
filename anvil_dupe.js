@@ -17,17 +17,11 @@ for (let i = 0; i < loop_count; ++i) {
         Client.waitTick(+wait);
         Player.openInventory().swap(30, 0);
         Client.waitTick(+wait);
-        Player.openInventory().seName("By X2 Beacon");
-        Client.waitTick(+wait);
-        Player.openInventory().swap(2, 30);
-        Client.waitTick(+wait);
-        Player.openInventory().close();
-        Client.waitTick(+wait);
-        Player.getPlayer().interact();
-        Client.waitTick(+wait);
-        Player.openInventory().swap(30, 0);
-        Client.waitTick(+wait);
-        Player.openInventory().seName("X2 Beacon");
+        if (Player.openInventory().getName() == "X2 Beacon") {
+            Player.openInventory().seName("By X2 Beacon");
+        } else if (Player.openInventory().getName() == "By X2 Beacon") {
+            Player.openInventory().seName("X2 Beacon");
+        }
         Client.waitTick(+wait);
         Player.openInventory().swap(2, 30);
         Client.waitTick(+wait);
@@ -79,7 +73,7 @@ for (let i = 0; i < loop_count; ++i) {
 
 function pillar() {
     ///pillar up
-    if (anvil == true) {
+    if(anvil == true){
         const loop_count = 16;
         for (let i = 0; i < loop_count; ++i) {
             const inv = Player.openInventory(); // Class to allow selection of slot
@@ -94,6 +88,7 @@ function pillar() {
             Player.addInput(inp1); //|| Player.addInput(inp1)
             Client.waitTick(1);
             Player.getPlayer().interact(); // Place block down
+            Client.waitTick(5);
         }
     }
 }
