@@ -5,11 +5,11 @@ a minecraft macro for anvil duping.
 ## installation
 
 ### windows
-go to %APPDATA%\.minecraft\config\jsMacros\Macros\ and move dupe_macro.js in there
+go to %APPDATA%\.minecraft\config\jsMacros\Macros\ and move anvil_dupe.js in there
 ### linux
-go to ~/.minecraft/config/jsMacros/Macros/ and move dupe_macro.js in there
+go to ~/.minecraft/config/jsMacros/Macros/ and move anvil_dupe.js in there
 ### macros
-go to ~/Library/Application Support/minecraft/config/jsMacros/Macros/ and move dupe_macro.js in there
+go to ~/Library/Application Support/minecraft/config/jsMacros/Macros/ and move anvil_dupe.js in there
 
 ## dependencies
 this macro needs [JSmacros](https://github.com/JsMacros/JsMacros) to run
