@@ -5,7 +5,7 @@ a minecraft macro for anvil duping.
 ## installation
 
 ### windows
-go to %APPDATA%\.minecraft\config\jsMacros\Macros\ and move anvil_dupe.js in there
+go to %APPDATA%/.minecraft/config/jsMacros/Macros/ and move anvil_dupe.js in there
 ### linux
 go to ~/.minecraft/config/jsMacros/Macros/ and move anvil_dupe.js in there
 ### macros
