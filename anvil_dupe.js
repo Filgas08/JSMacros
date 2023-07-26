@@ -2,12 +2,13 @@
 ///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
 ///The second hotbar slot must be empty
 var wait = 4; ///If it doesen't work, keep adding 1 number until it works.
-const loop_count = 20; ///set how many times you want it to repeat
+const loop_count = 50; ///set how many times you want it to repeat
 var anvil = true //true to automaticaly place anvils once they run out false to not
 
 main()
 
 function main() {
+    Client.waitTick(10);
     center();
     Client.waitTick(+wait);
     for (let i = 0; i < loop_count; ++i) {
@@ -77,7 +78,7 @@ function exp() {
             } else {
                 Player.getPlayer().interactItem(false);
             }
-            if (check_and_refill() == 1) {
+            if (check_and_refill("minecraft:experience_bottle", 44) == 1) {
                 return 1;
             }
         }
@@ -87,12 +88,12 @@ function exp() {
 
 function pillar() {
     ///pillar up
-    if (Player.openInventory().getSlot(41).getItemId() == "minecraft:anvil" ||
-        Player.openInventory().getSlot(41).getItemId() == "minecraft:chipped_anvil" ||
-        Player.openInventory().getSlot(41).getItemId() == "minecraft:damaged_anvil") {
-        if (anvil == true) {
-            const loop_count = 16;
-            for (let i = 0; i < loop_count; ++i) {
+    if (anvil == true) {
+        const loop_count = 4;
+        for (let i = 0; i < loop_count; ++i) {
+            if (Player.openInventory().getSlot(41).getItemId() == "minecraft:anvil" ||
+                Player.openInventory().getSlot(41).getItemId() == "minecraft:chipped_anvil" ||
+                Player.openInventory().getSlot(41).getItemId() == "minecraft:damaged_anvil") {
                 const inv = Player.openInventory(); // Class to allow selection of slot
                 inv.setSelectedHotbarSlotIndex(5); // Select hotbar slot with block to place
                 Client.waitTick(1); // Delay 1ms
@@ -106,6 +107,10 @@ function pillar() {
                 Client.waitTick(1);
                 Player.getPlayer().interact(); // Place block down
                 Client.waitTick(5);
+            } else {
+                check_and_refill("minecraft:anvil", 41);
+                check_and_refill("minecraft:chipped_anvil", 41);
+                check_and_refill("minecraft:damaged_anvil", 41);
             }
         }
     }
@@ -115,12 +120,12 @@ function quit() {
     JsMacros.getServiceManager().stopService("anvil_dupe.js");
 }
 
-function check_and_refill() {
+function check_and_refill(item, slot) {
     // exp refill
-    if (Player.openInventory().getSlot(44).getItemId() != "minecraft:experience_bottle") {
+    if (Player.openInventory().getSlot(slot).getItemId() != item) {
         for (let i = 9; i < 35; i++) {
-            if (Player.openInventory().getSlot(i).getItemId() == "minecraft:experience_bottle") {
-                Player.openInventory().swap(i, 44);
+            if (Player.openInventory().getSlot(i).getItemId() == item) {
+                Player.openInventory().swap(i, slot);
                 return 0;
             }
         }
