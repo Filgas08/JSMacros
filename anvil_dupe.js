@@ -1,16 +1,15 @@
 ///Must have atleast 1 damaged anvil under the player
-///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot(optional) and xp bottles in 9th hotbar slot.
+///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
 ///The second hotbar slot must be empty
 var wait = 4; ///If it doesen't work, keep adding 1 number until it works.
 const loop_count = 20; ///set how many times you want it to repeat
-var anvil = false //true to automaticaly place anvils once they run out false to not
-
-Player.getPlayer().lookAt(0, 90);
-try {
-    var Data = Player.rayTraceBlock(5, false).getId();
-} catch {}
+var anvil = true //true to automaticaly place anvils once they run out false to not
 
 for (let i = 0; i < loop_count; ++i) {
+    Player.getPlayer().lookAt(0, 90);
+    try {
+        var Data = Player.rayTraceBlock(5, false).getId();
+    } catch {}
     if (Data == "minecraft:anvil" || Data == "minecraft:chipped_anvil" || Data == "minecraft:damaged_anvil") {
         Player.openInventory().setSelectedHotbarSlotIndex(0);
         Client.waitTick(+wait)
