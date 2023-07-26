@@ -1,4 +1,4 @@
-# JSMacros
+# Anvil dupe macro
 
 a minecraft macro for anvil duping.
 
