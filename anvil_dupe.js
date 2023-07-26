@@ -1,7 +1,11 @@
+///                          Read Me
+
 ///Must have atleast a 3 block high pillar of damaged anvils ontop of 1 obsidan block.
-///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
+///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot(optional) and xp bottles in 9th hotbar slot.
 var wait = 4; ///If it doesen't work, keep adding 1 number until it works.
-const loop_count = 20; ///set how many times you want it to repeat
+const loop_count = 50; ///set how many times you want it to repeat
+var anvil = false //true to automaticaly place anvils once they run out false to not
+
 
 for (let i = 0; i < loop_count; ++i) {
     Player.getPlayer().lookAt(0, 90);
@@ -25,6 +29,9 @@ for (let i = 0; i < loop_count; ++i) {
         Client.waitTick(+wait);
         Player.openInventory().close();
         Client.waitTick(+wait);
+        var Data2 = Player.rayTraceBlock(5, false).getId();
+        if (Data2 == "minecraft:anvil" || Data2 == "minecraft:chipped_anvil" || Data2 == "minecraft:damaged_anvil") {
+        Client.waitTick(+wait);
         Player.getPlayer().interact();
         Client.waitTick(+wait);
         Player.openInventory().swap(30, 0);
@@ -45,7 +52,7 @@ for (let i = 0; i < loop_count; ++i) {
         Player.getPlayer().lookAt(0, 90);
         Client.waitTick(+wait);
         Player.openInventory().swap(36, 37);
-        ///
+        }///
         Player.openInventory().setSelectedHotbarSlotIndex(8);
         Player.getPlayer().lookAt(0, -90);
         Client.waitTick(+wait);
@@ -80,7 +87,7 @@ for (let i = 0; i < loop_count; ++i) {
 }
 
 function pillar() {
-    ///pillar up
+   if(anvil == true){ ///pillar up
     const loop_count = 16;
     for (let i = 0; i < loop_count; ++i) {
         const inv = Player.openInventory(); // Class to allow selection of slot
@@ -95,5 +102,7 @@ function pillar() {
         Player.addInput(inp1); //|| Player.addInput(inp1)
         Client.waitTick(1);
         Player.getPlayer().interact(); // Place block down
+        Client.waitTick(+wait);
+        }
     }
 }
