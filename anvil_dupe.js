@@ -1,21 +1,16 @@
-///                          Read Me
-
-///Must have atleast a 3 block high pillar of damaged anvils ontop of 1 obsidan block.
-///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot(optional) and xp bottles in 9th hotbar slot.
+///Must have atleast 1 damaged anvil under the player
+///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
+///The second hotbar slot must be empty
 var wait = 4; ///If it doesen't work, keep adding 1 number until it works.
-const loop_count = 50; ///set how many times you want it to repeat
+const loop_count = 20; ///set how many times you want it to repeat
 var anvil = false //true to automaticaly place anvils once they run out false to not
 
+Player.getPlayer().lookAt(0, 90);
+try {
+    var Data = Player.rayTraceBlock(5, false).getId();
+} catch {}
 
 for (let i = 0; i < loop_count; ++i) {
-    Player.getPlayer().lookAt(0, 90);
-    var Data;
-    try {
-        Data = Player.rayTraceBlock(5, false).getId();
-    } catch {
-        Chat.log("stand on top of an anvil to use this script!")
-        JavaWrapper.stop()
-    }
     if (Data == "minecraft:anvil" || Data == "minecraft:chipped_anvil" || Data == "minecraft:damaged_anvil") {
         Player.openInventory().setSelectedHotbarSlotIndex(0);
         Client.waitTick(+wait)
@@ -28,9 +23,6 @@ for (let i = 0; i < loop_count; ++i) {
         Player.openInventory().swap(2, 30);
         Client.waitTick(+wait);
         Player.openInventory().close();
-        Client.waitTick(+wait);
-        var Data2 = Player.rayTraceBlock(5, false).getId();
-        if (Data2 == "minecraft:anvil" || Data2 == "minecraft:chipped_anvil" || Data2 == "minecraft:damaged_anvil") {
         Client.waitTick(+wait);
         Player.getPlayer().interact();
         Client.waitTick(+wait);
@@ -52,7 +44,7 @@ for (let i = 0; i < loop_count; ++i) {
         Player.getPlayer().lookAt(0, 90);
         Client.waitTick(+wait);
         Player.openInventory().swap(36, 37);
-        }///
+        ///
         Player.openInventory().setSelectedHotbarSlotIndex(8);
         Player.getPlayer().lookAt(0, -90);
         Client.waitTick(+wait);
@@ -76,33 +68,37 @@ for (let i = 0; i < loop_count; ++i) {
         if (Player.openInventory().findItem("minecraft:experience_bottle").length == 0) {
             World.playSound("block.note_block.cow_bell");
             Chat.log("out of xp");
-            process.exit()
+            quit();
         }
     } else if (i != 0) {
         pillar();
     } else {
         Chat.log("stand on top of an anvil to use this script!")
-        process.exit()
+        quit();
     }
 }
 
 function pillar() {
-   if(anvil == true){ ///pillar up
-    const loop_count = 16;
-    for (let i = 0; i < loop_count; ++i) {
-        const inv = Player.openInventory(); // Class to allow selection of slot
-        inv.setSelectedHotbarSlotIndex(5); // Select hotbar slot with block to place
-        Client.waitTick(1); // Delay 1ms
-        const inp = Player.createPlayerInput(0, 0, 0, 90, true, true, false); // Sneak & Jump & look down
-        const inp1 = Player.createPlayerInput(0, 0, 0, 90, false, true, false); // Sneak & look down
-        Player.addInput(inp); // Execute movement from line above
-        Client.waitTick(1)
-        //Player.getPlayer().lookAt(0,90) // Look down
-        Client.waitTick(1);
-        Player.addInput(inp1); //|| Player.addInput(inp1)
-        Client.waitTick(1);
-        Player.getPlayer().interact(); // Place block down
-        Client.waitTick(+wait);
+    ///pillar up
+    if (anvil == true) {
+        const loop_count = 16;
+        for (let i = 0; i < loop_count; ++i) {
+            const inv = Player.openInventory(); // Class to allow selection of slot
+            inv.setSelectedHotbarSlotIndex(5); // Select hotbar slot with block to place
+            Client.waitTick(1); // Delay 1ms
+            const inp = Player.createPlayerInput(0, 0, 0, 90, true, true, false); // Sneak & Jump & look down
+            const inp1 = Player.createPlayerInput(0, 0, 0, 90, false, true, false); // Sneak & look down
+            Player.addInput(inp); // Execute movement from line above
+            Client.waitTick(1)
+            //Player.getPlayer().lookAt(0,90) // Look down
+            Client.waitTick(1);
+            Player.addInput(inp1); //|| Player.addInput(inp1)
+            Client.waitTick(1);
+            Player.getPlayer().interact(); // Place block down
         }
     }
+}
+
+function quit() {
+    JsMacros.getServiceManager().stopService("anvil_dupe.js");
 }
