@@ -8,7 +8,6 @@ var anvil = true //true to automaticaly place anvils once they run out false to 
 main()
 
 function main() {
-    Client.waitTick(10);
     center();
     Client.waitTick(+wait);
     for (let i = 0; i < loop_count; ++i) {
