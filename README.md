@@ -1,5 +1,5 @@
 # Anvil dupe macro
-#### still working on it we both haven't really used Javascript at all
+#### still working on it we both haven't really used Javascript at all until now
 a minecraft macro for anvil duping.
 
 ## installation
