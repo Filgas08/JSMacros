@@ -1,5 +1,5 @@
 ///Must have atleast 1 damaged anvil under the player
-///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot and xp bottles in 9th hotbar slot.
+///Have the item you want to dupe in 1st hotbar slot, damaged anvils in 6th hotbar slot(optional) and xp bottles in 9th hotbar slot.
 ///The second hotbar slot must be empty
 var wait = 4; ///If it doesen't work, keep adding 1 number until it works.
 const loop_count = 20; ///set how many times you want it to repeat
