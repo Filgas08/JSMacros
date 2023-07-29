@@ -4,6 +4,8 @@ a minecraft macro for anvil duping.
 
 ## installation
 
+#⚠️ only works in minecraft 1.20.1 ⚠️
+
 ### windows
 go to %APPDATA%/.minecraft/config/jsMacros/Macros/ and move anvil_dupe.js in there
 ### linux
